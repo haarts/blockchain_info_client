@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:http/http.dart';
+
 import 'package:web_socket_channel/io.dart';
 
 class Client {
@@ -11,18 +13,38 @@ class Client {
   final String _unconfirmedSub = "unconfirmed_sub";
   final String _addressSub = "addr_sub";
 
+  final String _blockPath = "/rawblock/";
+  final String _txPath = "/rawtx/";
+
   static const _headers = {
     HttpHeaders.userAgentHeader: _userAgent,
   };
 
-  static final String _defaultBlockchainUrl = "wss://ws.blockchain.info/inv";
+  static final String _defaultBlockchainUrl = "https://blockchain.info/";
+  static final String _defaultWebsocketBlockchainUrl =
+      "wss://ws.blockchain.info/inv";
 
-  /// The URL of the Blockchain server.
+  /// The URLs of the Blockchain server.
   final Uri websocketUrl;
+  final Uri url;
 
-  Client.websocket([String url])
-      : websocketUrl =
-            (url == null) ? Uri.parse(_defaultBlockchainUrl) : Uri.parse(url);
+  Client({String url, String webSocketUrl})
+      : url = (url == null) ? Uri.parse(_defaultBlockchainUrl) : Uri.parse(url),
+        websocketUrl = (webSocketUrl == null)
+            ? Uri.parse(_defaultWebsocketBlockchainUrl)
+            : Uri.parse(webSocketUrl);
+
+  Future<Map<String, dynamic>> getBlock(String blockHash) async {
+    var response = await get(url.replace(path: "$_blockPath$blockHash"));
+
+    return json.decode(response.body);
+  }
+
+  Future<Map<String, dynamic>> getTransaction(String txHash) async {
+    var response = await get(url.replace(path: "$_txPath$txHash"));
+
+    return json.decode(response.body);
+  }
 
   /// Returns a [Stream] of blocks are they get published on the network
   Stream<String> newBlocks() {

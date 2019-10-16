@@ -13,7 +13,7 @@ void main() {
   setUp(() async {
     server = MockWebServer();
     await server.start();
-    client = Client.websocket("ws://${server.host}:${server.port}/ws");
+    client = Client(webSocketUrl: "ws://${server.host}:${server.port}/ws");
   });
 
   tearDown(() async {
