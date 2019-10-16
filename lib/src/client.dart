@@ -7,7 +7,7 @@ class Client {
   /// Used to send an appropriate User-Agent header with the HTTP requests
   static const String _userAgent = 'Blockchain.info - Dart';
 
-  final String _blocksSub = "bloks_sub";
+  final String _blocksSub = "blocks_sub";
   final String _unconfirmedSub = "unconfirmed_sub";
   final String _addressSub = "addr_sub";
 
