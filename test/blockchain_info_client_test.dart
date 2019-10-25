@@ -36,7 +36,7 @@ void main() {
   test("newBlocks()", () async {
     var cannedResponse = await File('files/block.json').readAsString();
     server.enqueue(body: cannedResponse);
-    Stream<String> blocks = await client.newBlocks();
+    Stream<String> blocks = client.newBlocks();
     blocks.listen(expectAsync1((message) {}, count: 1));
   });
 
@@ -48,7 +48,7 @@ void main() {
       sink.add(tx2);
     };
 
-    Stream<String> blocks = await client.unconfirmedTransactions();
+    Stream<String> blocks = client.unconfirmedTransactions();
     blocks.listen(expectAsync1((message) {}, count: 2));
   });
 }
