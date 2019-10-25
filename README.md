@@ -1,6 +1,7 @@
 # Blockchain.info library
 
 [![pub package](https://img.shields.io/pub/v/blockchain_info.svg)](https://pub.dartlang.org/packages/blockchain_info)
+[![CircleCI](https://circleci.com/gh/inapay/blockchain_info_client.svg?style=svg)](https://circleci.com/gh/inapay/blockchain_info_client)
 
 A library for communicating with the [Blockchain.info API](https://www.blockchain.com/api/api_websocket).
 
