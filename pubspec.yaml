@@ -1,6 +1,6 @@
 description: A client to interact with the Blockchain.info websocket interface
 name: blockchain_info
-version: 0.1.2
+version: 0.1.3
 author: inapay authors <info@inapay.ch>
 homepage: https://github.com/inapay/blockchain_info_client
 

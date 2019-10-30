@@ -1,6 +1,10 @@
+## [0.1.3] - 10/30/2019
+
+* Add method to get latest block.
+
 ## [0.1.2] - 10/16/2019
 
-* Add methods to get past blocks and transactions
+* Add methods to get past blocks and transactions.
 
 ## [0.1.1] - 10/16/2019
 

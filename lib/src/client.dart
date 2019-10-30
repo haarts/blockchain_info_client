@@ -16,6 +16,8 @@ class Client {
   final String _blockPath = "/rawblock/";
   final String _txPath = "/rawtx/";
 
+  final String _latestBlockPath = "/latestblock";
+
   static const _headers = {
     HttpHeaders.userAgentHeader: _userAgent,
   };
@@ -37,6 +39,11 @@ class Client {
   Future<Map<String, dynamic>> getBlock(String blockHash) async {
     var response = await get(url.replace(path: "$_blockPath$blockHash"));
 
+    return json.decode(response.body);
+  }
+
+  Future<Map<String, dynamic>> getLatestBlock() async {
+    var response = await get(url.replace(path: "$_latestBlockPath"));
     return json.decode(response.body);
   }
 
